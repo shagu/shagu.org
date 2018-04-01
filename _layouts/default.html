@@ -16,8 +16,8 @@
 
     <section class="main-content">
       {% if page.url != '/' %}
-        <a href="/{{ site.github.repository_name }}" class="btn" style="float: right;background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png')">&lt;</a>
-        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: right;background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png')">GitHub</a>
+        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: right; background-color: #333333; border-radius: 0px 0.3rem 0px 0.3rem;">GitHub</a>
+        <a href="/{{ site.github.repository_name }}" class="btn" style="float: right; background-color: #333333; border-radius: 0.3rem 0px 0.3rem 0px;">&lt;</a>
       {% endif %}
 
       {{ content }}
