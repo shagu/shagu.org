@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   </head>
   <body>
-    <section class="page-header" style="background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png'); background-color: #000000 !important;">
+    <section class="page-header" style="padding: 2rem 6rem; background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png'); background-color: #000000 !important;">
       <a href="/{{ site.github.repository_name }}"><img src='https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/logo.png'></a>
       <h2>{{ site.description | default: site.github.project_tagline }}</h2>
-
-      {% if page.url != '/' %}
-        <a href="/{{ site.github.repository_name }}" class="btn" style="float: left;">Back to Startpage</a>
-        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: right;">View on GitHub</a>
-      {% endif %}
     </section>
 
     <section class="main-content">
+      {% if page.url != '/' %}
+        <a href="/{{ site.github.repository_name }}" class="btn" style="float: right;background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png')">&lt;</a>
+        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: right;background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png')">GitHub</a>
+      {% endif %}
 
       {{ content }}
 
