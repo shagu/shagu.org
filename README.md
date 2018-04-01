@@ -5,7 +5,7 @@ Hello and welcome to my website. My name is Shagu and this is meant as an overvi
 ## Active Addons
 
 <a href="pfQuest"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_layouts/pfQuest_banner.png" align="right" width="48.87%"></a>
-<a href="pfUI"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_layouts/pfQuest_banner.png" width="48.87%"></a>
+<a href="pfUI"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_layouts/pfUI_banner.png" width="48.87%"></a>
 
 * **[pfUI](pfUI) A complete and minimal UI framework**
 * **[pfQuest](pfQuest) A lightweight quest, spawn and item database**
