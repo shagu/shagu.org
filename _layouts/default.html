@@ -14,9 +14,8 @@
       <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
       {% if page.url != '/' %}
-        <a href="/{{ site.github.repository_name }}" class="btn">Startpage</a>
-        <a href="https://github.com/shagu{{ page.url }}" class="btn">GitHub</a>
-        <a href="https://github.com/shagu{{ page.url }}/archive/master.zip" class="btn">Download</a>
+        <a href="/{{ site.github.repository_name }}" class="btn" style="float: left;">Back to Startpage</a>
+        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: right;">View on GitHub</a>
       {% endif %}
     </section>
 
