@@ -19,6 +19,7 @@
     <style>
       body {
         background: #111111;
+        color: #cccccc;
       }
     
       a {
@@ -29,10 +30,32 @@
         color: #33ffcc;
         text-decoration: underline;
       }
+      
+      #header {
+        background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png');
+        background-color: #000000 !important; 
+        border-bottom: 1px solid #33ffcc;
+        height: 75px;
+      }
+      
+      a.btn {
+        float: left; 
+        background-color: #111111; 
+        display: inline-block; 
+        padding: 10px; 
+        border: 1px #444444 solid; 
+        margin: 4px 0px; 
+        color: #aaaaaa;
+      }
+      
+      a.btn:hover {
+        border: 1px #33ffcc solid; 
+        color: #ffffff;
+      }
     </style>
   </head>
   <body>
-      <div id="header" style="background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png'); background-color: #000000 !important;">
+      <div id="header">
         <nav>
           <a href="/{{ site.github.repository_name }}" style="float:right;"><img src='https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/logo.png'></a>
 
