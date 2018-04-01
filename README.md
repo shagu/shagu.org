@@ -1,11 +1,11 @@
-# Welcome!
+# Shagu Addons
 
-Hello and welcome to my website. This is meant as an overview of all the addons, that I have created for World of Warcraft Vanilla (1.12.1) since I started playing on private servers in late 2013. All my addons are hosted on GitHub and in case you have any issues, please don't hesitate to create a bugreport on the corresponding addon's issuetracker. Also, if you're a developer on your own, please note that all my work is licensed under MIT and I'd like to encourage you to create pull request whenever you miss something.
+Hello and welcome to my website. My name is Shagu and this is meant as an overview of all the addons, that I have created for World of Warcraft Vanilla (1.12.1) since I started playing on private servers in late 2013. All my addons are hosted on GitHub and in case you have any issues, please don't hesitate to create a bugreport on the corresponding addon's issuetracker. Also, if you're a developer on your own, please note that all my work is licensed under MIT and I'd like to encourage you to create pull request whenever you miss something.
 
 ## Active Addons
 
 * **[pfUI](pfUI) A complete and minimal UI framework**
-* **[pfQuest](pfQuest) A lightweight questhelper and ingame Database**
+* **[pfQuest](pfQuest) A lightweight quest, spawn and item database**
 
 ## pfUI extensions
 
@@ -40,5 +40,5 @@ Hello and welcome to my website. This is meant as an overview of all the addons,
 
 ## Outdated Addons
 
-* [ShaguUI](ShaguUI) A static configured All-in-One User-Interface
-* [ShaguQuest](ShaguQuest) An ingame database addon
+* *[ShaguUI](ShaguUI) A static configured All-in-One User-Interface*
+* *[ShaguQuest](ShaguQuest) An ingame database addon*
