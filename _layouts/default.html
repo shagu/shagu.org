@@ -16,8 +16,8 @@
 
     <section class="main-content">
       {% if page.url != '/' %}
-        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: right; background-color: #333333; border-radius: 0px 0.3rem 0px 0.3rem;">GitHub</a>
-        <a href="/{{ site.github.repository_name }}" class="btn" style="float: right; background-color: #333333; border-radius: 0.3rem 0px 0.3rem 0px;">&lt;</a>
+        <a href="/{{ site.github.repository_name }}" class="btn" style="float: left; background-color: #111111;">&lt; Back</a>
+        <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: left; background-color: #111111;">Show on GitHub</a>
       {% endif %}
 
       {{ content }}
