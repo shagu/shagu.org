@@ -18,12 +18,17 @@
 
   </head>
   <body>
-      <div id="header">
+      <div id="header" style="background: url('https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/bgtop.png'); background-color: #000000 !important;">
         <nav>
           <div id="title">
-            <h1>{{ site.title | default: site.github.repository_name }}</h1>
-            <p>{{ site.description | default: site.github.project_tagline }}</p>
+            <a href="/{{ site.github.repository_name }}"><img src='https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/logo.png'></a>
+            <h2>{{ site.description | default: site.github.project_tagline }}</h2>
           </div>
+          
+          {% if page.url != '/' %}
+          <a href="/{{ site.github.repository_name }}" class="btn" style="float: left; background-color: #111111;">&lt; Back</a>
+          <a href="https://github.com/shagu{{ page.url }}" class="btn" style="float: left; background-color: #111111;">Show on GitHub</a>
+          {% endif %}
         </nav>
       </div>
 
