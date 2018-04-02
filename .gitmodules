@@ -76,3 +76,6 @@
 [submodule "ShaguUI"]
 	path = ShaguUI
 	url = https://github.com/shagu/ShaguUI
+[submodule "ShaguValue"]
+	path = ShaguValue
+	url = https://github.com/shagu/ShaguValue
