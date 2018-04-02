@@ -35,6 +35,7 @@ Hello and welcome to my website. My name is Shagu and this is meant as an overvi
 * [ShaguScore](ShaguScore) Displays a gearscore alike item rating
 * [ShaguStance](ShaguStance) Automatically switches to the required stance
 * [ShaguTooltips](ShaguTooltips) Modifies the game tooltips
+* [ShaguValue](ShaguValue) Displays item sell and buy values on tooltips
 
 ## Unfinished Stuff
 
