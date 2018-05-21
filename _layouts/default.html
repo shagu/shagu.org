@@ -8,6 +8,38 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="{{ '/assets/js/respond.js' | relative_url }}"></script>
+    <script>
+      function github_get_latest_release(slug) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          var d = {};
+          if(this.getResponseHeader('Content-Type').includes('application/json') && this.responseText)
+            d = JSON.parse(this.responseText);
+
+          if(this.status == 200) {
+            var assets = d.assets;
+            assets.sort(function(a,b) {return (a.download_count > b.download_count) ? 1 : ((b.download_count > a.download_count) ? -1 : 0);} );
+
+            var asset_element = document.getElementById('downloads')
+            for(var i = 0; i < assets.length; ++i) {
+              var span = document.createElement('span');
+              var res = assets[i].name.split("-");
+              var version = res[1];
+              var loc = res[2].split(".");
+              var locale = loc[0];
+
+              span.innerHTML = '<a class="dl dl_' + locale + '" title="Downloads: ' + assets[i].download_count + '" href="' + assets[i].browser_download_url + '">Download ' + version + ' [<b>' + locale + '</b>]</a>';
+
+              asset_element.appendChild(span);
+              asset_element.after(span);
+            }
+          }
+        }
+        xhr.open('GET', 'https://api.github.com/repos/' + slug + '/releases/latest', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(null);
+      }
+    </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -61,9 +93,45 @@
       svg.octicon {
         fill: #cccccc;
       }
+
+      /* pfQuest Download Buttons */
+      a.dl {
+        background-color: #111111;
+        display: inline-block;
+        border: 1px #444444 solid;
+        color: #aaaaaa;
+        padding: 5px 5px 5px 50px;
+        margin: 5px 20px;
+        width: 200px;
+        text-align: center;
+        vertical-align: center;
+
+        background-repeat: no-repeat !important;
+        background-position: 5px 5px !important;
+      }
+
+      a.dl:hover {
+        border: 1px #aaaaaa solid;
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      a.dl_enUS { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/enUS.png); }
+      a.dl_deDE { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/deDE.png); }
+      a.dl_frFR { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/frFR.png); }
+      a.dl_koKR { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/koKR.png); }
+      a.dl_ruRU { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/ruRU.png); }
+      a.dl_zhCN { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/zhCN.png); }
+      a.dl_esES { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/esES.png); }
+
     </style>
   </head>
   <body>
+
+      {% if page.url contains 'pfQuest' %}
+      <script>github_get_latest_release("shagu/pfQuest")</script>
+      {% endif %}
+
       <div id="header">
         <nav>
           <a href="{{ site.url }}//" style="float:right;"><img src='https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/logo.png'></a>
