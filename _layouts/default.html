@@ -19,18 +19,9 @@
           if(this.status == 200) {
             var assets = d.assets;
 
-
             assets.sort(function(a,b) {return (a.download_count > b.download_count) ? 1 : ((b.download_count > a.download_count) ? -1 : 0);} );
 
             var asset_element = document.getElementById('downloads')
-
-            // add release date
-            var releasedate = new Date(Date.parse(d.published_at));
-            var span = document.createElement('span');
-            span.setAttribute("id", "releasespan");
-            span.innerHTML = 'Release Date:<br/><span id="releasedate">' + releasedate + '</span>';
-            asset_element.appendChild(span);
-            asset_element.after(span);
 
             for(var i = 0; i < assets.length; ++i) {
               var span = document.createElement('span');
@@ -44,6 +35,15 @@
               asset_element.appendChild(span);
               asset_element.after(span);
             }
+
+            // add release date
+            var releasedate = new Date(Date.parse(d.published_at));
+            var span = document.createElement('span');
+            span.setAttribute("id", "releasespan");
+            span.innerHTML = '<small>Release Date:</small><br/><span id="releasedate">' + releasedate + '</span>';
+            asset_element.appendChild(span);
+            asset_element.after(span);
+
          }
         }
         xhr.open('GET', 'https://api.github.com/repos/' + slug + '/releases/latest', true);
@@ -120,7 +120,7 @@
       }
 
       a.dl:hover {
-        border: 1px #aaaaaa solid;
+        border: 1px #ffffff solid;
         color: #33ffcc;
         text-decoration: none;
       }
@@ -143,8 +143,8 @@
       }
 
       span#releasedate {
-        font-style: none;
-        color: #33ffcc;
+        font-style: normal;
+        color: #ffffff;
       }
 
     </style>
