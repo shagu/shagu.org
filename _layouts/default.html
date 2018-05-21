@@ -18,9 +18,20 @@
 
           if(this.status == 200) {
             var assets = d.assets;
+
+
             assets.sort(function(a,b) {return (a.download_count > b.download_count) ? 1 : ((b.download_count > a.download_count) ? -1 : 0);} );
 
             var asset_element = document.getElementById('downloads')
+
+            // add release date
+            var releasedate = new Date(Date.parse(d.published_at));
+            var span = document.createElement('span');
+            span.setAttribute("id", "releasespan");
+            span.innerHTML = 'Release Date:<br/><span id="releasedate">' + releasedate + '</span>';
+            asset_element.appendChild(span);
+            asset_element.after(span);
+
             for(var i = 0; i < assets.length; ++i) {
               var span = document.createElement('span');
               var res = assets[i].name.split("-");
@@ -33,7 +44,7 @@
               asset_element.appendChild(span);
               asset_element.after(span);
             }
-          }
+         }
         }
         xhr.open('GET', 'https://api.github.com/repos/' + slug + '/releases/latest', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -122,6 +133,19 @@
       a.dl_zhCN { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/zhCN.png); }
       a.dl_esES { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/esES.png); }
       a.dl_noLoc { background: url(https://raw.githubusercontent.com/shagu/{{ site.github.repository_name }}/master/_layouts/noLoc.png); }
+
+      span#releasespan {
+        display: block;
+        padding: 10px;
+        color: #aaaaaa;
+        font-style: italic;
+        text-align: center;
+      }
+
+      span#releasedate {
+        font-style: none;
+        color: #33ffcc;
+      }
 
     </style>
   </head>
