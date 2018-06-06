@@ -4,8 +4,8 @@ Hello and welcome to my website. My name is Shagu and this is meant as an overvi
 
 
 # Moving to GitLab
-During the migration to GitLab, this website will not work as expected.
-Please be patient...
+## During the migration to GitLab, this website will not work as expected.
+## Please be patient...
 
 ## Active Addons
 
