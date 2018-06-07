@@ -1,81 +1,81 @@
 [submodule "pfQuest"]
 	path = pfQuest
-	url = https://github.com/shagu/pfQuest
+	url = https://gitlab.com/shagu/pfQuest
 [submodule "pfSimpleDamage"]
 	path = pfSimpleDamage
-	url = https://github.com/shagu/pfSimpleDamage
+	url = https://gitlab.com/shagu/pfSimpleDamage
 [submodule "pfStudio"]
 	path = pfStudio
-	url = https://github.com/shagu/pfStudio
+	url = https://gitlab.com/shagu/pfStudio
 [submodule "pfUI"]
 	path = pfUI
-	url = https://github.com/shagu/pfUI
+	url = https://gitlab.com/shagu/pfUI
 [submodule "pfUI-eliteoverlay"]
 	path = pfUI-eliteoverlay
-	url = https://github.com/shagu/pfUI-eliteoverlay
+	url = https://gitlab.com/shagu/pfUI-eliteoverlay
 [submodule "pfUI-fonts"]
 	path = pfUI-fonts
-	url = https://github.com/shagu/pfUI-fonts
+	url = https://gitlab.com/shagu/pfUI-fonts
 [submodule "ShaguBam"]
 	path = ShaguBam
-	url = https://github.com/shagu/ShaguBam
+	url = https://gitlab.com/shagu/ShaguBam
 [submodule "ShaguBoP"]
 	path = ShaguBoP
-	url = https://github.com/shagu/ShaguBoP
+	url = https://gitlab.com/shagu/ShaguBoP
 [submodule "ShaguChat"]
 	path = ShaguChat
-	url = https://github.com/shagu/ShaguChat
+	url = https://gitlab.com/shagu/ShaguChat
 [submodule "ShaguClock"]
 	path = ShaguClock
-	url = https://github.com/shagu/ShaguClock
+	url = https://gitlab.com/shagu/ShaguClock
 [submodule "ShaguColor"]
 	path = ShaguColor
-	url = https://github.com/shagu/ShaguColor
+	url = https://gitlab.com/shagu/ShaguColor
 [submodule "ShaguCombat"]
 	path = ShaguCombat
-	url = https://github.com/shagu/ShaguCombat
+	url = https://gitlab.com/shagu/ShaguCombat
 [submodule "ShaguCopy"]
 	path = ShaguCopy
-	url = https://github.com/shagu/ShaguCopy
+	url = https://gitlab.com/shagu/ShaguCopy
 [submodule "ShaguDelgado"]
 	path = ShaguDelgado
-	url = https://github.com/shagu/ShaguDelgado
+	url = https://gitlab.com/shagu/ShaguDelgado
 [submodule "ShaguError"]
 	path = ShaguError
-	url = https://github.com/shagu/ShaguError
+	url = https://gitlab.com/shagu/ShaguError
 [submodule "ShaguInventory"]
 	path = ShaguInventory
-	url = https://github.com/shagu/ShaguInventory
+	url = https://gitlab.com/shagu/ShaguInventory
 [submodule "ShaguKill"]
 	path = ShaguKill
-	url = https://github.com/shagu/ShaguKill
+	url = https://gitlab.com/shagu/ShaguKill
 [submodule "ShaguMount"]
 	path = ShaguMount
-	url = https://github.com/shagu/ShaguMount
+	url = https://gitlab.com/shagu/ShaguMount
 [submodule "ShaguNotify"]
 	path = ShaguNotify
-	url = https://github.com/shagu/ShaguNotify
+	url = https://gitlab.com/shagu/ShaguNotify
 [submodule "ShaguPlates"]
 	path = ShaguPlates
-	url = https://github.com/shagu/ShaguPlates
+	url = https://gitlab.com/shagu/ShaguPlates
 [submodule "ShaguPremium"]
 	path = ShaguPremium
-	url = https://github.com/shagu/ShaguPremium
+	url = https://gitlab.com/shagu/ShaguPremium
 [submodule "ShaguQuest"]
 	path = ShaguQuest
-	url = https://github.com/shagu/ShaguQuest
+	url = https://gitlab.com/shagu/ShaguQuest
 [submodule "ShaguScore"]
 	path = ShaguScore
-	url = https://github.com/shagu/ShaguScore
+	url = https://gitlab.com/shagu/ShaguScore
 [submodule "ShaguStance"]
 	path = ShaguStance
-	url = https://github.com/shagu/ShaguStance
+	url = https://gitlab.com/shagu/ShaguStance
 [submodule "ShaguTooltips"]
 	path = ShaguTooltips
-	url = https://github.com/shagu/ShaguTooltips
+	url = https://gitlab.com/shagu/ShaguTooltips
 [submodule "ShaguUI"]
 	path = ShaguUI
-	url = https://github.com/shagu/ShaguUI
+	url = https://gitlab.com/shagu/ShaguUI
 [submodule "ShaguValue"]
 	path = ShaguValue
-	url = https://github.com/shagu/ShaguValue
+	url = https://gitlab.com/shagu/ShaguValue
