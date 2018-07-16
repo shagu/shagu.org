@@ -79,3 +79,9 @@
 [submodule "ShaguValue"]
 	path = ShaguValue
 	url = https://gitlab.com/shagu/ShaguValue
+[submodule "pfDebug"]
+	path = pfDebug
+	url = https://gitlab.com/shagu/pfDebug
+[submodule "GMBlacklist"]
+	path = GMBlacklist
+	url = https://gitlab.com/shagu/GMBlacklist
