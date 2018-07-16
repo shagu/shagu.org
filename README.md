@@ -36,6 +36,8 @@ Hello and welcome to my website. My name is Shagu and this is meant as an overvi
 * [ShaguStance](ShaguStance) Automatically switches to the required stance
 * [ShaguTooltips](ShaguTooltips) Modifies the game tooltips
 * [ShaguValue](ShaguValue) Displays item sell and buy values on tooltips
+* [pfDebug](pfDebug) Monitors the memory usage, peaks and garbage collection
+* [GMBlacklist](GMBlacklist) Helps GMs on cutting and blacklisting chat messages
 
 ## Unfinished Stuff
 
