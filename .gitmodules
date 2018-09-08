@@ -85,3 +85,6 @@
 [submodule "GMBlacklist"]
 	path = GMBlacklist
 	url = https://gitlab.com/shagu/GMBlacklist
+[submodule "pfUI-darkmod"]
+	path = pfUI-darkmod
+	url = https://gitlab.com/shagu/pfUI-darkmod.git/
