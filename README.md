@@ -12,6 +12,7 @@ Hello and welcome to my website. My name is Shagu and this is meant as an overvi
 
 ## pfUI extensions
 
+* [pfUI-darkmod](pfUI-darkmod) A pfUI mod example
 * [pfUI-eliteoverlay](pfUI-eliteoverlay) Elite overlay for pfUI unitframes
 * [pfUI-fonts](pfUI-fonts) Additional fonts for pfUI
 
