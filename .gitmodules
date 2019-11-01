@@ -88,3 +88,6 @@
 [submodule "pfUI-darkmod"]
 	path = pfUI-darkmod
 	url = https://github.com/shagu/pfUI-darkmod.git/
+[submodule "ShaguJWC"]
+	path = ShaguJWC
+	url = https://github.com/shagu/ShaguJWC
