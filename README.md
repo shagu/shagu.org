@@ -65,3 +65,4 @@ I recently begun to port some of the popular addons to the Burning Crusade clien
 
 * [ShaguJWC](ShaguJWC) Some Eye-candy for your JWC gambling
 * [ShaguNotify](ShaguNotify) Shows achievement alike notifications for several events
+* [ShaguMail](ShaguMail) An experimental mail addon
