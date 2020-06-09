@@ -94,3 +94,6 @@
 [submodule "ShaguMail"]
 	path = ShaguMail
 	url = https://github.com/shagu/ShaguMail
+[submodule "ShaguWidget"]
+	path = ShaguWidget
+	url = https://github.com/shagu/ShaguWidget
