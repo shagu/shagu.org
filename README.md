@@ -39,6 +39,7 @@ I recently begun to port some of the popular addons to the Burning Crusade clien
 * [ShaguStance](ShaguStance) Automatically switches to the required stance
 * [ShaguTooltips](ShaguTooltips) Modifies the game tooltips
 * [ShaguValue](ShaguValue) Displays item sell and buy values on tooltips
+* [ShaguWidget](ShaguWidget) A Desktop Widget System
 * [GMBlacklist](GMBlacklist) Helps GMs on cutting and blacklisting chat messages
 
 ### Unfinished/Development Stuff
@@ -66,3 +67,4 @@ I recently begun to port some of the popular addons to the Burning Crusade clien
 * [ShaguJWC](ShaguJWC) Some Eye-candy for your JWC gambling
 * [ShaguNotify](ShaguNotify) Shows achievement alike notifications for several events
 * [ShaguMail](ShaguMail) An experimental mail addon
+* [ShaguWidget](ShaguWidget) A Desktop Widget System
