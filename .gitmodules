@@ -97,3 +97,6 @@
 [submodule "ShaguWidget"]
 	path = ShaguWidget
 	url = https://github.com/shagu/ShaguWidget
+[submodule "vanilla-hunter-pets"]
+	path = vanilla-hunter-pets
+	url = https://github.com/shagu/vanilla-hunter-pets
