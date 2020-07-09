@@ -72,4 +72,4 @@ I recently begun to port some of the popular addons to the Burning Crusade clien
 
 ## Miscellaneous
 
-* [Vanilla Hunter Pets](Hunter) A list of tameable pets including their abilities per patch
+* [Vanilla Hunter Pets](hunter) A list of tameable pets including their abilities per patch
