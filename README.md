@@ -68,3 +68,8 @@ I recently begun to port some of the popular addons to the Burning Crusade clien
 * [ShaguNotify](ShaguNotify) Shows achievement alike notifications for several events
 * [ShaguMail](ShaguMail) An experimental mail addon
 * [ShaguWidget](ShaguWidget) A Desktop Widget System
+
+
+## Miscellaneous
+
+* [Vanilla Hunter Pets](Hunter) A list of tameable pets including their abilities per patch
