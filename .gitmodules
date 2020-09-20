@@ -100,3 +100,6 @@
 [submodule "vanilla-hunter-pets"]
 	path = vanilla-hunter-pets
 	url = https://github.com/shagu/vanilla-hunter-pets
+[submodule "ShaguGhetto"]
+	path = ShaguGhetto
+	url = https://github.com/shagu/ShaguGhetto
