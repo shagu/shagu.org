@@ -103,3 +103,6 @@
 [submodule "ShaguGhetto"]
 	path = ShaguGhetto
 	url = https://github.com/shagu/ShaguGhetto
+[submodule "ShaguJunk"]
+	path = ShaguJunk
+	url = https://github.com/shagu/ShaguJunk
