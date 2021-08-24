@@ -20,6 +20,7 @@ Most of the addons are written in a way, that allows to run the same addon code 
 
 ### Other Addons
 
+* <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> [ShaguTweaks](ShaguTweaks) Adds several QoL-Features for those who enjoy the default Interface.
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [ShaguPlates](ShaguPlates) Modifies and extends the default nameplates
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [ShaguWidget](ShaguWidget) A Desktop Widget System
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [ShaguGhetto](ShaguGhetto) Automates ghetto hearth invites
