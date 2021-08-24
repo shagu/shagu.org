@@ -106,3 +106,6 @@
 [submodule "ShaguJunk"]
 	path = ShaguJunk
 	url = https://github.com/shagu/ShaguJunk
+[submodule "ShaguTweaks"]
+	path = ShaguTweaks
+	url = https://github.com/shagu/ShaguTweaks
