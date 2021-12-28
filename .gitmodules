@@ -109,3 +109,6 @@
 [submodule "ShaguTweaks"]
 	path = ShaguTweaks
 	url = https://github.com/shagu/ShaguTweaks
+[submodule "pfQuest-turtle"]
+	path = pfQuest-turtle
+	url = https://github.com/shagu/pfQuest-turtle
