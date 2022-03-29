@@ -112,3 +112,6 @@
 [submodule "pfQuest-turtle"]
 	path = pfQuest-turtle
 	url = https://github.com/shagu/pfQuest-turtle
+[submodule "ShaguMeter"]
+	path = ShaguMeter
+	url = https://github.com/shagu/ShaguMeter
