@@ -115,3 +115,6 @@
 [submodule "ShaguMeter"]
 	path = ShaguMeter
 	url = https://github.com/shagu/ShaguMeter
+[submodule "ShaguDPS"]
+	path = ShaguDPS
+	url = https://github.com/shagu/ShaguDPS
