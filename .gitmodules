@@ -118,3 +118,6 @@
 [submodule "ShaguDPS"]
 	path = ShaguDPS
 	url = https://github.com/shagu/ShaguDPS
+[submodule "ShaguController"]
+	path = ShaguController
+	url = https://github.com/shagu/ShaguController
