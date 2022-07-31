@@ -1,1 +1,1 @@
-yes, it's me on darrowshire.
+yes, it's me on turtle wow... (Shagu \<Basic Campfire\>)
