@@ -19,6 +19,7 @@ Most of the addons are written in a way, that allows to run the same addon code 
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [pfUI-fonts](pfUI-fonts) Additional fonts for pfUI
 
 ### pfQuest extensions
+* <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [pfQuest-icons](pfQuest-icons) An extension to use Gatherer icons on resource nodes
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> [pfQuest-turtle](pfQuest-turtle) Support for some TurtleWoW custom quests and units
 
 ### Other Addons
