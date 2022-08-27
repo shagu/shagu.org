@@ -121,3 +121,6 @@
 [submodule "ShaguController"]
 	path = ShaguController
 	url = https://github.com/shagu/ShaguController
+[submodule "pfQuest-icons"]
+	path = pfQuest-icons
+	url = https://github.com/shagu/pfQuest-icons
