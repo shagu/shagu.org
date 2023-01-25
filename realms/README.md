@@ -1,5 +1,6 @@
 ## Turtle-Wow:
 - Shagu *(Druid)*
+- Shugu *(Hunter)*
 - Smup *(Hunter)*
 
 ## Everlook:
