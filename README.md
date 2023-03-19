@@ -14,7 +14,6 @@ Most of the addons are written in a way, that allows to run the same addon code 
 
 ### pfUI extensions
 
-* <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [pfUI-darkmod](pfUI-darkmod) A pfUI mod example
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [pfUI-eliteoverlay](pfUI-eliteoverlay) Elite overlay for pfUI unitframes
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [pfUI-fonts](pfUI-fonts) Additional fonts for pfUI
 
@@ -56,6 +55,7 @@ Most of the addons are written in a way, that allows to run the same addon code 
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> [pfDebug](pfDebug) Monitors the memory usage, peaks and garbage collection
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> [pfStudio](pfStudio) An ingame-IDE and event monitor
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> [pfSimpleDamage](pfSimpleDamage) Locale-independent damage meter
+* <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [pfUI-darkmod](pfUI-darkmod) A pfUI mod example
 
 ### Archived Addons
 
