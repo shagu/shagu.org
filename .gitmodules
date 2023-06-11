@@ -124,3 +124,6 @@
 [submodule "pfQuest-icons"]
 	path = pfQuest-icons
 	url = https://github.com/shagu/pfQuest-icons
+[submodule "antispam"]
+	path = antispam
+	url = https://github.com/shagu/antispam
