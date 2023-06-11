@@ -49,6 +49,7 @@ Most of the addons are written in a way, that allows to run the same addon code 
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [ShaguJWC](ShaguJWC) Some Eye-candy for your JWC gambling
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> [ShaguMail](ShaguMail) An experimental mail addon
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> [ShaguController](ShaguController) SteamDeck optimized UI and Keybinds
+* <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> *[antispam](Antispam) A low-effort spam filter for turtle-wow*
 
 ### Unfinished/Development Stuff
 
@@ -63,7 +64,6 @@ Most of the addons are written in a way, that allows to run the same addon code 
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> *[ShaguQuest](ShaguQuest) An ingame database addon*
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> *[ShaguPremium](ShaguPremium) Gives access to Classic-Wow.org's custom content*
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> *[ShaguDelgado](ShaguDelgado) Modifies some elements to be purple*
-* <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/empty.png" height="22"> *[antispam](Antispam) A low-effort spam filter for turtle-wow*
 
 ## Miscellaneous
 
