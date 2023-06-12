@@ -6,3 +6,6 @@
 ## Everlook:
 - Shagu *(Druid)*
 - Smup *(Hunter)*
+
+## Wow-HC:
+- Shagu *(Hunter)*
