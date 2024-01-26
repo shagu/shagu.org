@@ -1,4 +1,4 @@
-## Turtle-Wow:
+## Turtle-Wow (Nordanaar):
 - Shagu *(Druid)*
 - Shugu *(Hunter)*
 - Smup *(Hunter)*
