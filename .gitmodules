@@ -127,3 +127,6 @@
 [submodule "antispam"]
 	path = antispam
 	url = https://github.com/shagu/antispam
+[submodule "ShaguActions"]
+	path = ShaguActions
+	url = https://github.com/shagu/ShaguActions
