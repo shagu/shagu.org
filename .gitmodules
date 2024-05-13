@@ -133,3 +133,6 @@
 [submodule "ShaguBoat"]
 	path = ShaguBoat
 	url = https://github.com/shagu/ShaguBoat
+[submodule "ShaguScan"]
+	path = ShaguScan
+	url = https://github.com/shagu/ShaguScan
