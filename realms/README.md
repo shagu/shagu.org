@@ -1,5 +1,6 @@
 ## Turtle-Wow (Nordanaar):
 - Shagu *(Druid)*
+- Shaguhc *(Hunter)*
 - Shugu *(Hunter)*
 - Smup *(Hunter)*
 
@@ -13,3 +14,4 @@
 
 ## Wow-HC:
 - Shagu *(Hunter)*
+- Smup *(Druid)*
