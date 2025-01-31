@@ -1,7 +1,10 @@
 # Shagu Addons
 
-Hello and welcome to my website. I've been creating World of Warcraft AddOns since 2013 and on this site you can find the majority of what I did the past years. As of now (2021), I will no longer actively work on them. I will still fix bugs (if there are any) and will take care of pull requests. However, I will no longer work on new features.
+Hello and welcome to my website. I've been creating World of Warcraft AddOns since 2013 and on this site you can find the majority of what I did the past years. 
+I'm not as active as I have been before, but I still fix bugs (if there are any) and will take care of pull requests. 
+
 If you're a developer on your own, please note that all my work is licensed under MIT, so feel free to pick what you want. The addons are made for the 1.12.1 and the 2.4.3 clients, they won't be remade for the new Classic gameclients that blizzard provides now. The icons indicate for which version the addon was made.
+
 Most of the addons are written in a way, that allows to run the same addon code both the vanilla and the tbc gameclient. The only requirement for this is to name the folder proplerly (See README files with the addon folders).
 
 <a href="pfQuest"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_layouts/pfQuest_banner.png" align="right" width="48%"></a>
