@@ -136,3 +136,6 @@
 [submodule "ShaguScan"]
 	path = ShaguScan
 	url = https://github.com/shagu/ShaguScan
+[submodule "ShaguTweaks-extras"]
+	path = ShaguTweaks-extras
+	url = https://github.com/shagu/ShaguTweaks-extras
