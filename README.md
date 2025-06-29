@@ -1,16 +1,22 @@
 # Shagu Addons
 
-Hello and welcome to my website. I've been creating World of Warcraft AddOns since 2013 and on this site you can find the majority of what I did the past years. 
-I'm not as active as I have been before, but I still fix bugs (if there are any) and will take care of pull requests. 
+Hello and welcome to my website. I have been developing World of Warcraft AddOns since 2013, and here you will find most of my work from over the years.
+The addons are developed for the 1.12.1 and 2.4.3 clients and will not be remade for the new Classic game clients provided by Blizzard. The icons indicate the version for which each addon was originally created.
 
-If you're a developer on your own, please note that all my work is licensed under MIT, so feel free to pick what you want. The addons are made for the 1.12.1 and the 2.4.3 clients, they won't be remade for the new Classic gameclients that blizzard provides now. The icons indicate for which version the addon was made.
+Most of these addons are designed to be compatible with both the Vanilla and TBC game clients. The only requirement is to name the folder correctly (please refer to the README files included with each addon folder).
 
-Most of the addons are written in a way, that allows to run the same addon code both the vanilla and the tbc gameclient. The only requirement for this is to name the folder proplerly (See README files with the addon folders).
+## Moving Forward
+
+My active involvement in addon development has come to an end. I no longer find the Turtle-WoW community a nice place to be, and other Vanilla and Burning Crusade servers now support the latest game clients that don’t require my addons. The few remaining people who value my contributions are not enough to justify dedicating such large amounts of my personal time into this.
+
+The enjoyment of the game has decreased over time. As a result, I will be reducing my activity and will not provide updates as often as before.
+While I may occasionally be online and address bugs as they arise, please do not expect the same level of activity or support as in the past.
+I will continue to review and process well-crafted pull requests, as long as they are thoroughly tested and not the result of automated or unverified AI-generated content.
+
+## World of Warcraft: Addons
 
 <a href="pfQuest"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_layouts/pfQuest_banner.png" align="right" width="48%"></a>
 <a href="pfUI"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_layouts/pfUI_banner.png" width="48%"></a>
-
-## World of Warcraft: Addons
 
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> **[pfUI](pfUI) A complete and minimal UI framework**
 * <img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_vanilla.png" title="Vanilla 1.12.1 support" height="22"><img src="https://raw.githubusercontent.com/shagu/ShaguAddons/master/_img/wow_tbc.png" title="The Burning Crusade 2.4.3 support" height="22"> **[pfQuest](pfQuest) A lightweight quest, spawn and item database**
