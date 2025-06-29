@@ -80,4 +80,5 @@ I will continue to review and process well-crafted pull requests, as long as the
 
 ## Miscellaneous
 
-* [Vanilla Hunter Pets](hunter) A list of tameable pets including their abilities per patch
+* [Vanilla WoW Hunter Pets](vanilla-hunter-pets) A list of tameable pets including their abilities per patch
+* [Turtle WoW Hunter Pets](turtle-hunter-pets) A list of tameable pets including their abilities
