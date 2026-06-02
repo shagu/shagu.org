@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>shagu — retired addon dev, linux nerd &amp; retro gamer</title>
+<style>
+/* color palette - 8 colors max */
+:root {
+  --bg: #111111;
+  --fg: #dddddd;
+  --border: #222222;
+  --accent: #33ffcc;
+  --accent-red: #c82d34;
+  --portrait-light: #888888;
+  --portrait-dark: #333333;
+}
+[data-theme="light"] {
+  --bg: #eeeeee;
+  --fg: #222222;
+  --border: #dddddd;
+  --accent: #00a388;
+  --accent-red: #c82d34;
+  --portrait-light: #aaaaaa;
+  --portrait-dark: #555555;
+}
+/* reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { text-decoration: none; }
+html { font-size: 16px; }
+
+/* base styles */
+body {
+  font-family: 'Courier New', Consolas, Monaco, 'Liberation Mono', monospace;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  transition: background .25s, color .25s;
+}
+
+/* layout */
+.container { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+/* nav bar */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem 0.85rem;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
+.nav::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent-red), var(--accent), var(--fg));
+}
+[data-theme="light"] .nav::after {
+  background: linear-gradient(to right, var(--fg), var(--accent-red), var(--accent));
+}
+.nav__brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: var(--accent-red);
+}
+.nav__links { display: flex; gap: 1.25rem; align-items: center; }
+.nav__links a { color: var(--fg); font-size: .85rem; transition: color .15s; }
+.nav__links a:hover { color: var(--accent-red); }
+
+/* theme toggle button */
+.theme-btn {
+  appearance: none;
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--fg);
+  font-family: inherit;
+  font-size: .75rem;
+  padding: .25rem .6rem;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.theme-btn:hover { background: var(--border); color: var(--bg); }
+
+/* accent horizontal rule */
+.accent-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0 1.5rem;
+}
+
+/* header section */
+.header { padding: 3rem 0 2rem; }
+.header__title { font-size: 2rem; font-weight: 700; margin-bottom: .25rem; }
+.header__title span { color: var(--accent-red); }
+.header__tagline { font-size: .9rem; color: var(--fg); opacity: .6; margin-bottom: .75rem; }
+.header__status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+  padding: .3rem .75rem;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  margin-top: .5rem;
+}
+.header__status::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+}
+
+/* section styles */
+.section { padding: 1.5rem 0; }
+.section__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: .25rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.section__title::before { content: '>'; color: var(--accent-red); font-weight: 700; }
+.section__subtitle { font-size: .8rem; opacity: .6; margin-bottom: 1.25rem; }
+
+/* bio text */
+.bio {
+  font-size: .9rem;
+  line-height: 1.75;
+  max-width: 680px;
+  opacity: .88;
+}
+.bio strong { color: var(--accent-red); }
+.bio a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+}
+.bio a:hover { color: var(--accent-red); border-color: var(--accent-red); }
+
+/* project cards */
+.grid { display: flex; flex-direction: column; }
+.card {
+  margin-bottom: 1.5rem;
+  padding: 0 0 0 1.25rem;
+  border-left: 4px solid var(--border);
+  transition: border-color .15s;
+}
+.card:last-child { margin-bottom: 0; }
+.card:hover { border-left-color: var(--accent-red); }
+
+.card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--fg);
+}
+.card__badge {
+  font-size: .65rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent);
+  opacity: .35;
+}
+.card__desc {
+  font-size: .85rem;
+  line-height: 1.55;
+  margin-top: .3rem;
+  color: var(--fg);
+  opacity: .75;
+}
+.card:hover .card__desc { opacity: 1; }
+.card__meta {
+  display: flex;
+  gap: 1rem;
+  font-size: .75rem;
+  color: var(--fg);
+  opacity: .5;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-top: .2rem;
+}
+.card:hover .card__meta { opacity: 1; }
+
+/* compact card variant for abandoned projects */
+.card--compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .75rem;
+  margin-bottom: .65rem;
+  padding: .75rem 1rem;
+  border-left: 4px solid var(--border);
+  opacity: .7;
+  transition: opacity .15s, border-color .15s;
+}
+.card--compact:last-child { margin-bottom: 0; }
+.card--compact:hover { border-left-color: var(--accent-red); opacity: 1; }
+.card--compact .card__name { font-size: .9rem; font-weight: 700; flex-shrink: 0; color: var(--fg); }
+.card--compact .card__desc { font-size: .75rem; margin-top: 0; line-height: 1.5; display: inline; color: var(--fg); opacity: .75; }
+.card--compact:hover .card__desc { opacity: 1; }
+
+/* link buttons */
+.links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: .5rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: inherit;
+  font-size: .8rem;
+  padding: .4rem .85rem;
+  border: 2px solid var(--fg);
+  color: var(--fg);
+  background: transparent;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.btn:hover { background: var(--fg); color: var(--bg); }
+.btn--accent { border-color: var(--accent-red); color: var(--accent-red); }
+.btn--accent:hover { background: var(--accent-red); color: var(--bg); }
+.btn--hire { border-color: var(--accent); color: var(--accent); }
+.btn--hire:hover { background: var(--accent); color: var(--bg); }
+
+/* footer */
+.footer { margin-top: 3rem; font-size: .8rem; opacity: .75; text-align: center; }
+.footer__links { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.footer__links a { color: var(--fg); opacity: 1; text-decoration: none; transition: color .15s; }
+.footer__links a:hover { color: var(--fg); text-decoration: underline; }
+
+/* impressum overlay */
+.impressum-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .75);
+  z-index: 200;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.impressum-overlay.is-open {
+  display: flex;
+}
+.impressum {
+  background: var(--bg);
+  border: 2px solid var(--fg);
+  max-width: 520px;
+  margin: 1rem;
+  padding: 2rem;
+  position: relative;
+}
+.impressum__close {
+  position: absolute;
+  top: .5rem;
+  right: .75rem;
+  background: none;
+  border: none;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: .85rem;
+  cursor: pointer;
+}
+.impressum__close:hover { color: var(--accent-red); }
+.impressum h3 { font-size: 1rem; margin-bottom: .75rem; }
+.impressum p { font-size: .8rem; line-height: 1.7; opacity: .85; }
+.impressum a { color: var(--accent-red); text-decoration: none; }
+
+.portrait {
+  float: left;
+  margin: -48px -24px -48px 0px;
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+.portrait td.c1 {
+  background-color: var(--portrait-light);
+}
+
+.portrait td.c2 {
+  background-color: var(--portrait-dark);
+}
+
+.portrait tr, td {
+  padding: 0;
+  border: 0;
+  line-height: 0;
+  font-size: 0;
+
+  width: 2px;
+  height: 2px;
+}
+
+
+/* responsive */
+@media (max-width: 600px) {
+  .nav__links a.hide-mobile { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- nav bar -->
+<nav class="nav">
+  <div class="nav__brand">&gt; shagu</div>
+  <div class="nav__links">
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
+  </div>
+</nav>
+
+<!-- main content -->
+<div class="container">
+
+  <!-- header -->
+  <header class="header">
+    <table class="portrait">
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td></td><td class=c1></td><td class=c1></td><td></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <td></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td>
+      </tr>
+      <tr>
+        <td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td></td><td></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c1></td><td></td><td></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c1></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+      <tr>
+        <td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td><td class=c2></td>
+      </tr>
+    </table>
+    <h1 class="header__title">Hi, I'm <span>shagu</span>.</h1>
+    <p class="header__tagline">Retired Addon Developer &middot; Linux Nerd &middot; Retro Gamer</p>
+    <br style="clear: both;"/>
+    <br/>
+  </header>
+  <hr class="accent-rule">
+
+  <!-- about -->
+  <section class="section" id="about">
+    <h2 class="section__title">About</h2>
+    <br/>
+    <p class="bio">
+      Long-time <strong>Linux</strong> user and developer who spent years building
+      <strong>World of Warcraft</strong> add-ons that reached tens of thousands of players.
+      I've created and maintain several open-source projects - from <strong>Magic: The Gathering</strong>
+      collection management to lightweight game-development libraries.
+      When I'm not coding, I configure and update my <strong>homelab</strong> with <strong>Docker Compose</strong>,
+      design things in <strong>FreeCAD</strong>, and 3D print them. I'm also passionate about
+      <strong>retro emulation</strong> handheld devices.
+      For a living, I build <strong>embedded Linux</strong> distributions with <strong>Yocto</strong>,
+      where I track down and patch security flaws in those systems.
+    </p>
+    <div class="links" style="margin-top:1.25rem;">
+      <a class="btn btn--hire" href="#" id="hireLink">
+        ■ Contact Me
+      </a>
+    </div>
+  </section>
+  <hr class="accent-rule">
+
+  <!-- active projects -->
+  <section class="section" id="projects">
+    <h2 class="section__title">Current Projects</h2>
+    <br/>
+    <div class="grid">
+      <a class="card" href="https://github.com/shagu/macaco" target="_blank" rel="noopener">
+        <div class="card__name">macaco</div>
+        <p class="card__desc">A tool to digitalize and organize your MTG card collection. Cross-platform.</p>
+        <div class="card__meta"><span>JS / Electron</span></div>
+      </a>
+
+      <a class="card" href="https://github.com/shagu/arch-install" target="_blank" rel="noopener">
+        <div class="card__name">arch-install</div>
+        <p class="card__desc">A simple Arch Linux installation script. Automates clean system setup.</p>
+        <div class="card__meta"><span>Makefile / Shell</span></div>
+      </a>
+
+      <a class="card" href="https://github.com/shagu/mtgcounter" target="_blank" rel="noopener">
+        <div class="card__name">mtgcounter</div>
+        <p class="card__desc">A simple MTG life counter for Android, written in Lua with Love2D and framestack.</p>
+        <div class="card__meta"><span>Lua / Love2D</span></div>
+      </a>
+
+      <a class="card" href="https://github.com/shagu/framestack" target="_blank" rel="noopener">
+        <div class="card__name">framestack</div>
+        <p class="card__desc">Love2D frame toolkit with draw layers, events, widgets, and input support.</p>
+        <div class="card__meta"><span>Lua / Love2D</span></div>
+      </a>
+    </div>
+  </section>
+  <hr class="accent-rule">
+
+  <!-- abandoned projects -->
+  <section class="section" id="abandoned">
+    <h2 class="section__title">Abandoned Projects</h2>
+    <br/>
+    <div class="grid">
+
+      <a class="card card--compact" href="https://github.com/shagu/pfUI" target="_blank" rel="noopener">
+        <div class="card__name">pfUI</div>
+        <p class="card__desc">UI replacement for WoW: Vanilla &amp; TBC</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/pfQuest" target="_blank" rel="noopener">
+        <div class="card__name">pfQuest</div>
+        <p class="card__desc">Quest helper and database addon for WoW: Vanilla &amp; TBC</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguTweaks" target="_blank" rel="noopener">
+        <div class="card__name">ShaguTweaks</div>
+        <p class="card__desc">Tweaks and enhancements for default WoW 1.12.1</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguTweaks-extras" target="_blank" rel="noopener">
+        <div class="card__name">ShaguTweaks-extras</div>
+        <p class="card__desc">Extra modules for ShaguTweaks</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguPlates" target="_blank" rel="noopener">
+        <div class="card__name">ShaguPlates</div>
+        <p class="card__desc">pfUI nameplate export for WoW: Vanilla &amp; TBC</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguDPS" target="_blank" rel="noopener">
+        <div class="card__name">ShaguDPS</div>
+        <p class="card__desc">Lightweight damage meter for WoW Vanilla 1.12 & TBC 2.4.3</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguController" target="_blank" rel="noopener">
+        <div class="card__name">ShaguController</div>
+        <p class="card__desc">SteamDeck optimized UI and keybinds for WoW 1.12</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguScan" target="_blank" rel="noopener">
+        <div class="card__name">ShaguScan</div>
+        <p class="card__desc">Player/NPC scanner using SuperWoW's API</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/ShaguWidget" target="_blank" rel="noopener">
+        <div class="card__name">ShaguWidget</div>
+        <p class="card__desc">Widget system for WoW Vanilla 1.12 & TBC 2.4.3</p>
+      </a>
+      <a class="card card--compact" href="https://github.com/shagu/wow-vanilla-api" target="_blank" rel="noopener">
+        <div class="card__name">wow-vanilla-api</div>
+        <p class="card__desc">WoW Vanilla API reference</p>
+      </a>
+
+    </div>
+    <div class="links" style="margin-top:1.25rem;">
+      <a class="btn" href="https://github.com/shagu?tab=repositories" target="_blank" rel="noopener">
+        ■ View All Repositories
+      </a>
+    </div>
+  </section>
+
+  <hr class="accent-rule">
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="footer__links">
+      &copy; 2026 Shagu &bull;
+      <a href="#impressum" id="impressumTrigger">Impressum</a>&bull;
+      <a href="https://github.com/shagu" target="_blank" rel="noopener">GitHub</a>&bull;
+      <a href="https://youtube.com/@shagu" target="_blank" rel="noopener">YouTube</a>&bull;
+      <a href="https://www.twitch.tv/theshagu" target="_blank" rel="noopener">Twitch</a>
+    </div>
+
+  </footer>
+
+  <!-- impressum overlay -->
+  <div class="impressum-overlay" id="impressumOverlay">
+    <div class="impressum">
+      <button class="impressum__close" id="impressumClose">&times;</button>
+      <h3>Impressum</h3>
+      <pre id="impressum-content" style="font-family:inherit;font-size:.8rem;line-height:1.7;opacity:.85;white-space:pre;margin:0;"></pre>
+    </div>
+  </div>
+
+</div>
+
+<!-- theme toggle & impressum scripts -->
+<script>
+(function () {
+  // theme toggle
+  const btn = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  function setLabel() {
+    btn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀ LIGHT' : '☾ DARK';
+  }
+
+  setLabel();
+
+  btn.addEventListener('click', function () {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    setLabel();
+  });
+
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    root.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    root.setAttribute('data-theme', 'light');
+  }
+  setLabel();
+
+  // obfuscate mailto link
+  const hireLink = document.getElementById('hireLink');
+  if (hireLink) {
+    hireLink.href = atob('bWFpbHRvOnNoYWd1QG1haWxib3gub3Jn');
+  }
+
+  // impressum overlay
+  const trigger = document.getElementById('impressumTrigger');
+  const overlay = document.getElementById('impressumOverlay');
+  const closeBtn = document.getElementById('impressumClose');
+  const contentEl = document.getElementById('impressum-content');
+
+  if (contentEl) {
+    const b64 = 'QW5nYWJlbiBnZW0mYXVtbDsmc3psaWc7ICZzZWN0OyA1IERERzoKRXJpYyBNYXVzZXIKYy9vIEJs' +
+      'b2NrIFNlcnZpY2VzClN0dXR0Z2FydGVyIFN0ci4gMTA2CjcwNzM2IEZlbGxiYWNoCgpLb250YWt0' +
+      'OgpFLU1haWw6IDxhIGhyZWY9Im1haWx0bzpzaGFndUBtYWlsYm94Lm9yZyI+c2hhZ3VAbWFpbGJv' +
+      'eC5vcmc8L2E+CgpWZXJhbnR3b3J0bGljaCBmJnV1bWw7ciBkZW4gSW5oYWx0IG5hY2ggJnNlY3Q7' +
+      'IDE4IFN0Vjogc2llaGUgb2Jlbgo=';
+    contentEl.innerHTML = atob(b64);
+  }
+
+  function openImpressum() {
+    overlay.classList.add('is-open');
+  }
+
+  function closeImpressum() {
+    overlay.classList.remove('is-open');
+  }
+
+  if (trigger) {
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      openImpressum();
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeImpressum);
+  }
+
+  if (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeImpressum();
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+      closeImpressum();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
