@@ -6,14 +6,14 @@
     <script>
         const githubUser = "shagu";
         const path = window.location.pathname;
-        const target = "https://github.com" + githubUser + path;
+        const target = "https://github.com/" + githubUser + path;
         window.location.replace(target);
     </script>
 </head>
 <body>
     <p>Redirecting to <a id="link" href="#">GitHub...</a></p>
     <script>
-        document.getElementById("link").href = "https://github.com" + githubUser + window.location.pathname;
+        document.getElementById("link").href = "https://github.com/" + githubUser + window.location.pathname;
     </script>
 </body>
 </html>
